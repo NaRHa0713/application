@@ -23,6 +23,13 @@ public class WelcomeController {
     return "welcome.html";
   }
 
+  @GetMapping("/welcome/back")
+  public String sample10(Principal prin, ModelMap model) {
+    String loginUser = prin.getName();
+    this.room.logoutUser(loginUser);
+    return "logout.html";
+  }
+
   @GetMapping("/welcome/7narabe")
   public String sample38(Principal prin, ModelMap model) {
     String loginUser = prin.getName();

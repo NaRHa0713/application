@@ -20,6 +20,15 @@ public class Room {
     this.users.add(name);
   }
 
+  public void logoutUser(String name) {
+    for (String s : this.users) {
+      if (s.equals(name)) {
+        this.users.remove(name);
+        ;
+      }
+    }
+  }
+
   // 以降はフィールドのgetter/setter
   // これらがないとThymeleafで値を取得できない
   public int getRoomNo() {
