@@ -1,0 +1,9 @@
+INSERT INTO user (id,name) VALUES (1,'user1');
+INSERT INTO user (id,name) VALUES (2,'user2');
+INSERT INTO user (id,name) VALUES (3,'user3');
+INSERT INTO user (id,name) VALUES (4,'user4');
+INSERT INTO card (mark,no) VALUES ('spade',1);
+INSERT INTO card (mark,no) VALUES ('spade',2);
+INSERT INTO card (mark,no) VALUES ('club',1);
+INSERT INTO card (mark,no) VALUES ('heart',1);
+INSERT INTO card (mark,no) VALUES ('diamond',1);
