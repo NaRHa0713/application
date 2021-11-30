@@ -7,6 +7,12 @@
 
 <body>
   <h1>7ならべにようこそ!!!!!!</h1>
+  <div th:if="${room}">
+    参加者
+    <ul>
+      <li th:each="user : ${room.users}">[[${user}]]</li>
+    </ul>
+  </div>
 </body>
 
 </html>
