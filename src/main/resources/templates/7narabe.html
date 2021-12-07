@@ -3,15 +3,26 @@
 <head>
   <meta charset="utf-8">
   <title>7ならべ</title>
+
+  <script>
+    window.onload = function () {
+
+      var sse = new EventSource('step5');
+      sse.onmessage = function (event) {
+        console.log(event.data);
+        document.getElementById("p1").textContent = event.data;
+      }
+
+    }
+  </script>
 </head>
 
 <body>
   <h1>7ならべにようこそ!!!!!!</h1>
+
   <div th:if="${room}">
     参加者
-    <ul>
-      <li th:each="user : ${room.users}">[[${user}]]</li>
-    </ul>
+    <p th:each="user : ${room.users}" id="p1"></p>
   </div>
   <a href="/back">ホームに戻る</a>
 </body>
