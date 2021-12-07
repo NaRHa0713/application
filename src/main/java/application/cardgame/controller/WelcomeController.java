@@ -24,9 +24,9 @@ public class WelcomeController {
   }
 
   @GetMapping("/back")
-  public String sample10() {
-    // String loginUser = prin.getName();
-    // this.room.logoutUser(loginUser);
+  public String sample10(Principal prin) {
+    String loginUser = prin.getName();
+    this.room.logoutUser(loginUser);
     return "logout.html";
   }
 

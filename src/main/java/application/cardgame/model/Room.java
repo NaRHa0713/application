@@ -24,7 +24,6 @@ public class Room {
     for (String s : this.users) {
       if (s.equals(name)) {
         this.users.remove(name);
-        ;
       }
     }
   }
