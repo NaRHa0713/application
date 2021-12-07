@@ -10,7 +10,29 @@
       var sse = new EventSource('step5');
       sse.onmessage = function (event) {
         console.log(event.data);
-        document.getElementById("p1").textContent = event.data;
+
+        var users_list = JSON.parse(event.data);//JSONオブジェクトとしてparse
+
+        // 参加者リストを表示するHTML文章の作成
+        var users_table = "";
+        var s = "<ul>";
+        var e = "</ul>";
+        users_table = users_table + s;
+        for (var i = 0; i < users_list.length; i++) {
+          users_table = users_table + "<li>" + users_list[i];
+        }
+        users_table = users_table + e;
+
+        // 人数カウントして開始ボタンを表示するHTML文章の作成
+        var start = "しばらくお待ちください。";
+        if (users_list.length == 2) {
+          start = "<a href='/welcome'>開始</a>";
+        }
+
+        var tbody = document.getElementById("p1");
+        tbody.innerHTML = users_table;
+        var tbody = document.getElementById("p2");
+        tbody.innerHTML = start;
       }
 
     }
@@ -22,7 +44,8 @@
 
   <div th:if="${room}">
     参加者
-    <p th:each="user : ${room.users}" id="p1"></p>
+    <p id="p1"></p>
+    <p id="p2"></p>
   </div>
   <a href="/back">ホームに戻る</a>
 </body>
