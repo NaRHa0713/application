@@ -4,6 +4,6 @@ CREATE TABLE user (
 );
 
 CREATE TABLE card(
-    mark CHAR NOT NULL,
-    no INT NOT NULL
+    id IDENTITY,
+    image CHAR NOT NULL
 );
