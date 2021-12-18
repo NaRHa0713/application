@@ -3,43 +3,55 @@
 <head>
   <meta charset="utf-8">
   <title>7ならべ</title>
-
   <script>
     window.onload = function () {
-
       var sse = new EventSource('step5');
       sse.onmessage = function (event) {
         console.log(event.data);
-
-        var users_list = JSON.parse(event.data);//JSONオブジェクトとしてparse
-
+        var info = JSON.parse(event.data);//JSONオブジェクトとしてparse
         // 参加者リストを表示するHTML文章の作成
         var users_table = "";
         var s = "<ul>";
         var e = "</ul>";
         users_table = users_table + s;
-        for (var i = 0; i < users_list.length; i++) {
-          users_table = users_table + "<li>" + users_list[i];
+        for (var i = 0; i < info.users.length; i++) {
+          users_table = users_table + "<li>" + info.users[i];
         }
         users_table = users_table + e;
-
         // 人数カウントして開始ボタンを表示するHTML文章の作成
         var start = "しばらくお待ちください。";
-        if (users_list.length == 2) {
+        if (info.users.length == 2) {
           start = "<a href='/welcome'>開始</a>";
         }
+        // カードを表示するHTML文章の作成
+        var cards_table = "";
+        var left = 0;
+        var top = 0;
 
-        var tbody = document.getElementById("p1");
-        tbody.innerHTML = users_table;
-        var tbody = document.getElementById("p2");
-        tbody.innerHTML = start;
+
+        for (var i = 0; i < 4; i++) {
+          top = 100 * (i + 1);
+          for (var j = 0; j < 13; j++) {
+            left = 100 + 70 * j;
+            cards_table = cards_table + "<img th:src='@{/images/" + info.cards[13 * i + j].image + "}' width='70' height='100' style='position: absolute; left:" + left + "px; top:" + top + "px;'/>";
+          }
+        }
+
+
+
+        var tbody1 = document.getElementById("p1");
+        tbody1.innerHTML = users_table;
+        var tbody2 = document.getElementById("p2");
+        tbody2.innerHTML = start;
+        var tbody3 = document.getElementById("p3");
+        tbody3.innerHTML = cards_table;
       }
-
     }
   </script>
 </head>
 
 <body>
+  <h1>7ならべにようこそ!!!!!!</h1>
   <h1>7ならべの部屋</h1>
 
   <!-- スペード -->
@@ -108,6 +120,7 @@
     <p id="p1"></p>
     <p id="p2"></p>
   </div>
+  <div id="p3"></div>
   <a href="/back">ホームに戻る</a>
 </body>
 
