@@ -14,14 +14,14 @@
         var s = "<ul>";
         var e = "</ul>";
         users_table = users_table + s;
-        for (var i = 0; i < info.users.length; i++) {
-          users_table = users_table + "<li>" + info.users[i];
+        for (var i = 0; i < info.room.users.length; i++) {
+          users_table = users_table + "<li>" + info.room.users[i];
         }
         users_table = users_table + e;
         // 人数カウントして開始ボタンを表示するHTML文章の作成
         var start = "しばらくお待ちください。";
-        if (info.users.length == 2) {
-          start = "<a href='/welcome'>開始</a>";
+        if (info.room.users.length == 2) {
+          start = "<a href='/start'>開始</a>";
         }
         // カードを表示するHTML文章の作成
         var cards_table = "";
@@ -37,6 +37,12 @@
           }
         }
 
+        var hand_table = "";
+
+        for (var i = 0; i < info.room.hand_card.length; i++) {
+          hand_table = hand_table + "<li>" + info.room.hand_card[i].card[i].id;
+        }
+
 
 
         var tbody1 = document.getElementById("p1");
@@ -45,6 +51,8 @@
         tbody2.innerHTML = start;
         var tbody3 = document.getElementById("p3");
         tbody3.innerHTML = cards_table;
+        var tbody4 = document.getElementById("p4");
+        tbody4.innerText = hand_table;
       }
     }
   </script>
@@ -121,6 +129,7 @@
     <p id="p2"></p>
   </div>
   <div id="p3"></div>
+  <div id="p4"></div>
   <a href="/back">部屋から退出する</a>
 </body>
 

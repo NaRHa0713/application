@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class Room {
   ArrayList<String> users = new ArrayList<>();
   int roomNo = 1;
+  ArrayList<ArrayList<Card>> hand_card = new ArrayList<ArrayList<Card>>();
 
   public void addUser(String name) {
     // 同名のユーザが居たら何もせずにreturn
@@ -21,11 +23,16 @@ public class Room {
   }
 
   public void logoutUser(String name) {
-    for (int i = 0; i < this.users.size();i++) {
+    for (int i = 0; i < this.users.size(); i++) {
       if (this.users.get(i).equals(name)) {
         this.users.remove(i);
       }
     }
+  }
+
+  public void addCard(ArrayList<Card> hand) {
+    // 同名のユーザが居なかった場合はusersにnameを追加する
+    this.hand_card.add(hand);
   }
 
   // 以降はフィールドのgetter/setter
@@ -44,6 +51,14 @@ public class Room {
 
   public void setUsers(ArrayList<String> users) {
     this.users = users;
+  }
+
+  public ArrayList<ArrayList<Card>> getHand() {
+    return hand_card;
+  }
+
+  public void setHand(ArrayList<ArrayList<Card>> hand) {
+    this.hand_card = hand;
   }
 
 }
