@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class SendInfo {
   ArrayList<Card> cards;
-  ArrayList<String> users;
+  Room room;
 
   // Thymeleafでフィールドを扱うためにはgetter/setterが必ず必要
   // vscodeのソースコード右クリック->ソースアクションでsetter/getterを簡単に追加できる
-  public ArrayList<String> getUsers() {
-    return users;
+  public Room getRoom() {
+    return room;
   }
 
-  public void setUsers(ArrayList<String> users) {
-    this.users = users;
+  public void setRoom(Room room) {
+    this.room = room;
   }
 
   public ArrayList<Card> getCards() {

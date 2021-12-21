@@ -37,9 +37,10 @@ public class AsyncUser {
         ArrayList<Card> cards = cardmapper.selectAllCards(); // カード情報取得
         SendInfo info = new SendInfo();
         info.setCards(cards); // 送る情報に格納(カード情報)
-        info.setUsers(room.getUsers()); // 送る情報に格納(ユーザ情報)
+        info.setRoom(room); // 送る情報に格納(ユーザ情報)
         emitter.send(info);// ここでsendすると引数をブラウザにpushする
         logger.info("send:" + cards.get(1).getImage());
+        logger.info("send:" + room.getHand());
       } catch (Exception e) {
         // 例外の名前とメッセージだけ表示する
         logger.warn("Exception:" + e.getClass().getName() + ":" + e.getMessage());

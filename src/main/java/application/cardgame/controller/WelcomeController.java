@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.util.ArrayList;
+import java.util.Random;
 
 import application.cardgame.model.Room;
 import application.cardgame.service.AsyncUser;
+import application.cardgame.model.Card;
+import application.cardgame.model.CardMapper;
 
 @Controller
 public class WelcomeController {
@@ -59,5 +63,29 @@ public class WelcomeController {
     this.ac56.count(sseEmitter);
     return sseEmitter;
   }
+
+  @Autowired
+  CardMapper cardmapper;
+
+  @GetMapping("/start")
+  public String start() {
+    ArrayList<Card> all_card = cardmapper.selectAllCards();
+    ArrayList<Card> hand = new ArrayList<Card>();
+    Random rnd = new Random();
+    int r;
+    for(int j=0;j<2;j++){
+      for (int i = 0; i < 13; i++) {
+        r = rnd.nextInt(all_card.size());
+        hand.add(all_card.get(r));
+        all_card.remove(r);
+      }
+      this.room.addCard(hand);
+    }
+
+    return "7narabe.html";
+  }
+
+
+
 
 }
