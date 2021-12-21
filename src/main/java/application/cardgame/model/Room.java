@@ -21,9 +21,9 @@ public class Room {
   }
 
   public void logoutUser(String name) {
-    for (String s : this.users) {
-      if (s.equals(name)) {
-        this.users.remove(name);
+    for (int i = 0; i < this.users.size();i++) {
+      if (this.users.get(i).equals(name)) {
+        this.users.remove(i);
       }
     }
   }
