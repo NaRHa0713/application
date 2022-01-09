@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
 
 <head>
   <meta charset="utf-8">
@@ -39,8 +40,8 @@
 
         var hand_table = "";
 
-        for (var i = 0; i < info.room.hand_card.length; i++) {
-          hand_table = hand_table + "<li>" + info.room.hand_card[i].card[i].id;
+        for (var i = 0; i < info.room.hand.length; i++) {
+          hand_table = hand_table + "<li>" + info.room.hand[i].card[i].id;
         }
 
 
