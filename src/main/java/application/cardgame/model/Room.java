@@ -4,11 +4,16 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class Room {
   ArrayList<String> users = new ArrayList<>();
   int roomNo = 1;
+
+  /*
+   * String hand[][] = new String[4][]; ArrayList<Card> cards = new
+   * ArrayList<Card>(); ArrayList<cards> hand_card = new ArrayList<cards>();
+   */
+
   ArrayList<ArrayList<Card>> hand_card = new ArrayList<ArrayList<Card>>();
 
   public void addUser(String name) {
