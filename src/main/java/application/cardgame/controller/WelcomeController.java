@@ -31,6 +31,11 @@ public class WelcomeController {
     return "welcome.html";
   }
 
+  @GetMapping("/7narabe2")
+  public String sample22() {
+    return "7narabe2.html";
+  }
+
   @GetMapping("/back")
   public String sample10(Principal prin, ModelMap model) {
     String loginUser = prin.getName();
@@ -73,7 +78,7 @@ public class WelcomeController {
     ArrayList<Card> hand = new ArrayList<Card>();
     Random rnd = new Random();
     int r;
-    for(int j=0;j<2;j++){
+    for (int j = 0; j < 2; j++) {
       for (int i = 0; i < 13; i++) {
         r = rnd.nextInt(all_card.size());
         hand.add(all_card.get(r));
@@ -84,8 +89,5 @@ public class WelcomeController {
 
     return "7narabe.html";
   }
-
-
-
 
 }
