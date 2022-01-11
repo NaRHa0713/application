@@ -6,12 +6,12 @@
   <title>7ならべ</title>
   <script>
     window.onload = function () {
-      var sse = new EventSource('step5');
+      var sse = new EventSource('step6');
       sse.onmessage = function (event) {
         console.log(event.data);
         var info = JSON.parse(event.data);//JSONオブジェクトとしてparse
         // 参加者リストを表示するHTML文章の作成
-        var users_table = "";
+        /* var users_table = "";
         var s = "<ul>";
         var e = "</ul>";
         users_table = users_table + s;
@@ -20,22 +20,18 @@
         }
         users_table = users_table + e;
         // 人数カウントして開始ボタンを表示するHTML文章の作成
-        var start = "しばらくお待ちください。";
+        var start = "しばらくお待ちください。"; */
 
         /* if (info.length == 2) {
           start = "<a href='/start'>開始</a>";
         } */
 
         // カードを表示するHTML文章の作成
-        /* var cards_table = "";
+        var cards_table = "";
         var left = 0;
         var top = 0;
 
-        var table = ""
-        table = table + '<img src="/images/1.png" width="70" height="100" style="position: absolute; left:100px; top:100px;">'; */
-
-
-        /* for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < 4; i++) {
           top = 100 * (i + 1);
           for (var j = 0; j < 13; j++) {
             left = 100 + 70 * j;
@@ -45,29 +41,22 @@
 
         var hand_table = "";
 
-        for (var i = 0; i < info.room.hand.length; i++) {
+        /* for (var i = 0; i < info.room.hand.length; i++) {
           hand_table = hand_table + "<li>" + info.room.hand[i].card[i].id;
         } */
 
-        var tbody1 = document.getElementById("p1");
-        tbody1.innerHTML = users_table;
-
-
-        /* var tbody3 = document.getElementById("p3");
+        var tbody3 = document.getElementById("p3");
         tbody3.innerHTML = cards_table;
         var tbody4 = document.getElementById("p4");
-        tbody4.innerText = hand_table; */
+        tbody4.innerText = hand_table;
       }
     }
   </script>
 </head>
 
 <body>
+  <div id=p3>
 
-  <div th:if="${room}">
-    参加者
-    <p id="p1"></p>
-    <p>ページ移動しました</p>
   </div>
   <a href="/back">部屋から退出する</a>
 </body>
