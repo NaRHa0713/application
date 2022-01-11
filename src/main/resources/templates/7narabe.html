@@ -29,12 +29,15 @@
         var left = 0;
         var top = 0;
 
+        var table = ""
+        table = table + '<img src="/images/1.png" width="70" height="100" style="position: absolute; left:100px; top:100px;">';
+
 
         for (var i = 0; i < 4; i++) {
           top = 100 * (i + 1);
           for (var j = 0; j < 13; j++) {
             left = 100 + 70 * j;
-            cards_table = cards_table + "<img th:src='@{/images/" + info.cards[13 * i + j].image + "}' width='70' height='100' style='position: absolute; left:" + left + "px; top:" + top + "px;'/>";
+            cards_table = cards_table + "<img src='/images/" + info.cards[13 * i + j].image + "' width='70' height='100' style='position: absolute; left:" + left + "px; top:" + top + "px;'/>";
           }
         }
 
@@ -44,10 +47,9 @@
           hand_table = hand_table + "<li>" + info.room.hand[i].card[i].id;
         }
 
-
-
         var tbody1 = document.getElementById("p1");
         tbody1.innerHTML = users_table;
+
         var tbody2 = document.getElementById("p2");
         tbody2.innerHTML = start;
         var tbody3 = document.getElementById("p3");
@@ -63,7 +65,7 @@
   <h1>7ならべにようこそ!!!!!!</h1>
   <h1>7ならべの部屋</h1>
 
-  <!-- スペード -->
+  <!--
   <img th:src="@{/images/1.png}" width="70" height="100" style="position: absolute; left:100px; top:100px;">
   <img th:src="@{/images/2.png}" width="70" height="100" style="position: absolute; left:170px; top:100px;">
   <img th:src="@{/images/3.png}" width="70" height="100" style="position: absolute; left:240px; top:100px;">
@@ -78,7 +80,6 @@
   <img th:src="@{/images/12.png}" width="70" height="100" style="position: absolute; left:870px; top:100px;">
   <img th:src="@{/images/13.png}" width="70" height="100" style="position: absolute; left:940px; top:100px;">
 
-  <!-- クラブ -->
   <img th:src="@{/images/14.png}" width="70" height="100" style="position: absolute; left:100px; top:200px;">
   <img th:src="@{/images/15.png}" width="70" height="100" style="position: absolute; left:170px; top:200px;">
   <img th:src="@{/images/16.png}" width="70" height="100" style="position: absolute; left:240px; top:200px;">
@@ -93,7 +94,6 @@
   <img th:src="@{/images/25.png}" width="70" height="100" style="position: absolute; left:870px; top:200px;">
   <img th:src="@{/images/26.png}" width="70" height="100" style="position: absolute; left:940px; top:200px;">
 
-  <!-- ダイヤ -->
   <img th:src="@{/images/27.png}" width="70" height="100" style="position: absolute; left:100px; top:300px;">
   <img th:src="@{/images/28.png}" width="70" height="100" style="position: absolute; left:170px; top:300px;">
   <img th:src="@{/images/29.png}" width="70" height="100" style="position: absolute; left:240px; top:300px;">
@@ -108,7 +108,6 @@
   <img th:src="@{/images/38.png}" width="70" height="100" style="position: absolute; left:870px; top:300px;">
   <img th:src="@{/images/39.png}" width="70" height="100" style="position: absolute; left:940px; top:300px;">
 
-  <!-- ハート -->
   <img th:src="@{/images/40.png}" width="70" height="100" style="position: absolute; left:100px; top:400px;">
   <img th:src="@{/images/41.png}" width="70" height="100" style="position: absolute; left:170px; top:400px;">
   <img th:src="@{/images/42.png}" width="70" height="100" style="position: absolute; left:240px; top:400px;">
@@ -121,7 +120,7 @@
   <img th:src="@{/images/49.png}" width="70" height="100" style="position: absolute; left:730px; top:400px;">
   <img th:src="@{/images/50.png}" width="70" height="100" style="position: absolute; left:800px; top:400px;">
   <img th:src="@{/images/51.png}" width="70" height="100" style="position: absolute; left:870px; top:400px;">
-  <img th:src="@{/images/52.png}" width="70" height="100" style="position: absolute; left:940px; top:400px;">
+  <img th:src="@{/images/52.png}" width="70" height="100" style="position: absolute; left:940px; top:400px;"> -->
 
 
   <div th:if="${room}">
