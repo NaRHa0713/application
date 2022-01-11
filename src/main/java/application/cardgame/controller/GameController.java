@@ -16,59 +16,21 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import application.cardgame.model.Room;
-import application.cardgame.service.AsyncUser;
+import application.cardgame.service.AsyncCard;
 import application.cardgame.model.Card;
 import application.cardgame.model.CardMapper;
 
 @Controller
-public class WelcomeController {
+public class GameController {
 
   @Autowired
   private Room room;
 
-  @GetMapping("/welcome")
-  public String sample21() {
-    return "welcome.html";
-  }
-
-  @GetMapping("/back")
-  public String sample10(Principal prin, ModelMap model) {
-    String loginUser = prin.getName();
-    this.room.logoutUser(loginUser);
-    return "logout.html";
-  }
-
-  @GetMapping("/7narabe")
-  public String sample38(Principal prin, ModelMap model) {
-    String loginUser = prin.getName();
-    this.room.addUser(loginUser);
-    model.addAttribute("room", this.room);
-
-    return "7narabe.html";
-  }
-
-  private final Logger logger = LoggerFactory.getLogger(WelcomeController.class);
-
-  @Autowired
-  private AsyncUser ac56;
-
-  @GetMapping("step5")
-  public SseEmitter pushCount() {
-    // infoレベルでログを出力する
-    logger.info("pushCount");
-
-    // push処理の秘密兵器．これを利用してブラウザにpushする
-    // finalは初期化したあとに再代入が行われない変数につける（意図しない再代入を防ぐ）
-    final SseEmitter sseEmitter = new SseEmitter(-1L);
-    this.ac56.count(sseEmitter);
-    return sseEmitter;
-  }
-
   @Autowired
   CardMapper cardmapper;
 
-  @GetMapping("/start")
-  public String start() {
+  @GetMapping("/7narabe2")
+  public String sample22() {
     ArrayList<Card> all_card = cardmapper.selectAllCards();
     ArrayList<Card> hand = new ArrayList<Card>();
     Random rnd = new Random();
@@ -81,8 +43,23 @@ public class WelcomeController {
       }
       this.room.addCard(hand);
     }
-
-    return "7narabe.html";
+    return "7narabe2.html";
   }
 
+  private final Logger logger = LoggerFactory.getLogger(WelcomeController.class);
+
+  @Autowired
+  private AsyncCard ac57;
+
+  @GetMapping("step6")
+  public SseEmitter pushCount() {
+    // infoレベルでログを出力する
+    logger.info("pushCount");
+
+    // push処理の秘密兵器．これを利用してブラウザにpushする
+    // finalは初期化したあとに再代入が行われない変数につける（意図しない再代入を防ぐ）
+    final SseEmitter sseEmitter = new SseEmitter(-1L);
+    this.ac57.count(sseEmitter);
+    return sseEmitter;
+  }
 }
