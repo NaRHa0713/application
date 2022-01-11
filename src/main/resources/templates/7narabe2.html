@@ -21,9 +21,6 @@
         users_table = users_table + e;
         // 人数カウントして開始ボタンを表示するHTML文章の作成
         var start = "しばらくお待ちください。";
-        if (info.length == 2) {
-          window.location.href = '/7narabe2';
-        }
 
         /* if (info.length == 2) {
           start = "<a href='/start'>開始</a>";
@@ -55,9 +52,6 @@
         var tbody1 = document.getElementById("p1");
         tbody1.innerHTML = users_table;
 
-        var tbody2 = document.getElementById("p2");
-        tbody2.innerHTML = start;
-
 
         /* var tbody3 = document.getElementById("p3");
         tbody3.innerHTML = cards_table;
@@ -69,12 +63,11 @@
 </head>
 
 <body>
-  <h1>7ならべの部屋</h1>
 
   <div th:if="${room}">
     参加者
     <p id="p1"></p>
-    <p id="p2"></p>
+    <p>ページ移動しました</p>
   </div>
   <a href="/back">部屋から退出する</a>
 </body>

@@ -8,12 +8,15 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.ArrayList;
 
-import application.cardgame.model.Card;
-import application.cardgame.model.CardMapper;
+/* import java.util.ArrayList; */
+
+/* import application.cardgame.model.Card;
+import application.cardgame.model.CardMapper; */
+
 import application.cardgame.model.Room;
-import application.cardgame.model.SendInfo;
+
+/* import application.cardgame.model.SendInfo; */
 
 @Service
 public class AsyncUser {
@@ -22,8 +25,9 @@ public class AsyncUser {
   @Autowired
   private Room room;
 
-  @Autowired
-  private CardMapper cardmapper;
+  /*
+   * @Autowired private CardMapper cardmapper;
+   */
 
   private final Logger logger = LoggerFactory.getLogger(AsyncUser.class);
 
@@ -34,13 +38,21 @@ public class AsyncUser {
       try {
         logger.info("send:" + room.getUsers());
         TimeUnit.SECONDS.sleep(1);// 1秒STOP
-        ArrayList<Card> cards = cardmapper.selectAllCards(); // カード情報取得
-        SendInfo info = new SendInfo();
-        info.setCards(cards); // 送る情報に格納(カード情報)
-        info.setRoom(room); // 送る情報に格納(ユーザ情報)
-        emitter.send(info);// ここでsendすると引数をブラウザにpushする
-        logger.info("send:" + cards.get(1).getImage());
-        logger.info("send:" + room.getHand());
+
+        /* ArrayList<Card> cards = cardmapper.selectAllCards(); // カード情報取得 */
+
+        /*
+         * SendInfo info = new SendInfo(); info.setCards(cards); // 送る情報に格納(カード情報)
+         * info.setRoom(room); // 送る情報に格納(ユーザ情報)
+         */
+
+        emitter.send(room.getUsers());// ここでsendすると引数をブラウザにpushする
+
+        /*
+         * logger.info("send:" + cards.get(1).getImage()); logger.info("send:" +
+         * room.getHand());
+         */
+
       } catch (Exception e) {
         // 例外の名前とメッセージだけ表示する
         logger.warn("Exception:" + e.getClass().getName() + ":" + e.getMessage());
