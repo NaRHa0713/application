@@ -59,7 +59,7 @@ public class WelcomeController {
 
     // push処理の秘密兵器．これを利用してブラウザにpushする
     // finalは初期化したあとに再代入が行われない変数につける（意図しない再代入を防ぐ）
-    final SseEmitter sseEmitter = new SseEmitter();
+    final SseEmitter sseEmitter = new SseEmitter(-1L);
     this.ac56.count(sseEmitter);
     return sseEmitter;
   }
