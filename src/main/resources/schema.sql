@@ -5,5 +5,6 @@ CREATE TABLE user (
 
 CREATE TABLE card(
     id IDENTITY,
-    image CHAR NOT NULL
+    image CHAR NOT NULL,
+    state CHAR NOT NULL
 );

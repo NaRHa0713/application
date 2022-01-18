@@ -3,6 +3,7 @@ package application.cardgame.model;
 public class Card {
   int id;
   String image;
+  String state;
 
   // Thymeleafでフィールドを扱うためにはgetter/setterが必ず必要
   // vscodeのソースコード右クリック->ソースアクションでsetter/getterを簡単に追加できる
@@ -20,6 +21,14 @@ public class Card {
 
   public void setId(int id) {
     this.id = id;
+  }
+
+  public String getState() {
+    return state;
+  }
+
+  public void setState(String state) {
+    this.state = state;
   }
 
 }

@@ -22,6 +22,8 @@ import application.cardgame.model.SendInfo;
 public class AsyncCard {
   // int count = 1;
 
+  boolean dbUpdated = false;
+
   @Autowired
   private Room room;
 
@@ -32,13 +34,18 @@ public class AsyncCard {
 
   @Async
   public void count(SseEmitter emitter) {
+    dbUpdated = true;
     logger.info("count start");
-    while (true) {// 無限ループ
-      try {
+    try {
+      while (true) {// 無限ループ
         logger.info("send:" + room.getUsers());
-        TimeUnit.SECONDS.sleep(1);// 1秒STOP
 
-        ArrayList<Card> cards = cardmapper.selectAllCards(); // カード情報取得
+        ArrayList<Card> cards = cardmapper.selectAllCards(); //
+
+        if (false == dbUpdated) {
+          TimeUnit.MILLISECONDS.sleep(500);
+          continue;
+        }
 
         SendInfo info = new SendInfo();
         info.setCards(cards); // 送る情報に格納(カード情報)
@@ -46,20 +53,18 @@ public class AsyncCard {
         logger.info("send:" + cards);
         logger.info("send:" + info);
         emitter.send(info);// ここでsendすると引数をブラウザにpushする
-
+        dbUpdated = false;
         /*
          * logger.info("send:" + cards.get(1).getImage()); logger.info("send:" +
          * room.getHand());
          */
-
-      } catch (Exception e) {
-        // 例外の名前とメッセージだけ表示する
-        logger.warn("Exception:" + e.getClass().getName() + ":" + e.getMessage());
-        // 例外が発生したらカウントとsendを終了する
-        emitter.complete();// emitterの後始末．明示的にブラウザとの接続を一度切る．
-        break;
       }
+    } catch (Exception e) {
+      // 例外の名前とメッセージだけ表示する
+      logger.warn("Exception:" + e.getClass().getName() + ":" + e.getMessage());
+      // 例外が発生したらカウントとsendを終了する
+    } finally {
+      emitter.complete();// emitterの後始末．明示的にブラウザとの接続を一度切る
     }
-
   }
 }
