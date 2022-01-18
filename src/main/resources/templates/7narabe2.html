@@ -35,7 +35,7 @@
           top = 100 * (i + 1);
           for (var j = 0; j < 13; j++) {
             left = 100 + 70 * j;
-            cards_table = cards_table + "<img src='/images/" + info.cards[13 * i + j].image + "' width='70' height='100' style='position: absolute; left:" + left + "px; top:" + top + "px;'/>";
+            cards_table = cards_table + "<img src='/images/" + info.cards[13 * i + j].image + "' width='70' height='100' style='position: absolute; left:" + left + "px; top:" + top + "px; visibility:" + info.cards[13 * i + j].state + ";'>";
           }
         }
 
