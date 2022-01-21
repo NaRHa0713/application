@@ -9,12 +9,7 @@ public class Room {
   ArrayList<String> users = new ArrayList<>();
   int roomNo = 1;
 
-
-  ArrayList<Card> cards = new ArrayList<Card>();
-  /* ArrayList<cards> hand_card = new ArrayList<cards>(); */
-
-
-  ArrayList<ArrayList<Card>> hand_card = new ArrayList<ArrayList<Card>>();
+  ArrayList<Hand> allHand = new ArrayList<Hand>();
 
   public void addUser(String name) {
     // 同名のユーザが居たら何もせずにreturn
@@ -35,11 +30,6 @@ public class Room {
     }
   }
 
-  public void addCard(ArrayList<Card> hand) {
-    // 同名のユーザが居なかった場合はusersにnameを追加する
-    this.hand_card.add(hand);
-  }
-
   // 以降はフィールドのgetter/setter
   // これらがないとThymeleafで値を取得できない
   public int getRoomNo() {
@@ -58,12 +48,12 @@ public class Room {
     this.users = users;
   }
 
-  public ArrayList<ArrayList<Card>> getHand() {
-    return hand_card;
+  public ArrayList<Hand> getAllHand() {
+    return allHand;
   }
 
-  public void setHand(ArrayList<ArrayList<Card>> hand) {
-    this.hand_card = hand;
+  public void setAllHand(ArrayList<Hand> allHand) {
+    this.allHand = allHand;
   }
 
 }

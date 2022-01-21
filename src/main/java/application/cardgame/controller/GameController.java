@@ -19,6 +19,7 @@ import application.cardgame.model.Room;
 import application.cardgame.service.AsyncCard;
 import application.cardgame.model.Card;
 import application.cardgame.model.CardMapper;
+import application.cardgame.model.Hand;
 
 @Controller
 public class GameController {
@@ -33,16 +34,22 @@ public class GameController {
   public String sample22() {
     ArrayList<Card> all_card = cardmapper.selectAllCards();
     ArrayList<Card> hand = new ArrayList<Card>();
+    ArrayList<Hand> allHand = new ArrayList<Hand>();
+    Hand hand_card = new Hand();
     Random rnd = new Random();
     int r;
-    for (int j = 0; j < 2; j++) {
+    for (int j = 0; j < 4; j++) {
       for (int i = 0; i < 13; i++) {
         r = rnd.nextInt(all_card.size());
         hand.add(all_card.get(r));
         all_card.remove(r);
       }
-      this.room.addCard(hand);
+      hand_card.setHand(hand);
+      allHand.add(hand_card);
+      hand = new ArrayList<Card>();
+      hand_card = new Hand();
     }
+    this.room.setAllHand(allHand);
     return "7narabe2.html";
   }
 
