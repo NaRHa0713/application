@@ -41,14 +41,18 @@
 
         var hand_table = "";
 
-        /* for (var i = 0; i < info.room.hand.length; i++) {
-          hand_table = hand_table + "<li>" + info.room.hand[i].card[i].id;
-        } */
+        for (var i = 0; i < 4; i++) {
+          hand_table = hand_table + "<ol>";
+          for (var j = 0; j < 13; j++) {
+            hand_table = hand_table + "<li>" + info.room.allHand[i].hand[j].id + "</li>";
+          }
+          hand_table = hand_table + "</ol>";
+        }
 
         var tbody3 = document.getElementById("p3");
         tbody3.innerHTML = cards_table;
         var tbody4 = document.getElementById("p4");
-        tbody4.innerText = hand_table;
+        tbody4.innerHTML = hand_table;
       }
     }
   </script>
@@ -57,6 +61,8 @@
 <body>
   <div id=p3>
 
+  </div>
+  <div id=p4>
   </div>
   <a href="/back">部屋から退出する</a>
 </body>

@@ -64,25 +64,4 @@ public class WelcomeController {
     return sseEmitter;
   }
 
-  @Autowired
-  CardMapper cardmapper;
-
-  @GetMapping("/start")
-  public String start() {
-    ArrayList<Card> all_card = cardmapper.selectAllCards();
-    ArrayList<Card> hand = new ArrayList<Card>();
-    Random rnd = new Random();
-    int r;
-    for (int j = 0; j < 2; j++) {
-      for (int i = 0; i < 13; i++) {
-        r = rnd.nextInt(all_card.size());
-        hand.add(all_card.get(r));
-        all_card.remove(r);
-      }
-      this.room.addCard(hand);
-    }
-
-    return "7narabe.html";
-  }
-
 }
