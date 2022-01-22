@@ -47,6 +47,9 @@ public class AsyncCard {
       this.room.discard(id);
       cardmapper.updateById(id);
       count++;
+      if (count == 2) {
+        count = 0;
+      }
     }
     this.dbUpdated = true;
     return;
