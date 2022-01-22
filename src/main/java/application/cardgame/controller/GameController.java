@@ -49,7 +49,9 @@ public class GameController {
       for (int j = 0; j < 4; j++) {
         for (int i = 0; i < 13; i++) {
           r = rnd.nextInt(all_card.size());
-          hand.add(all_card.get(r));
+          if (all_card.get(r).getId() % 13 != 7) {
+            hand.add(all_card.get(r));
+          }
           all_card.remove(r);
         }
         hand_card.setHand(hand);
