@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
 //import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface CardMapper {
@@ -24,4 +25,8 @@ public interface CardMapper {
    */
   @Select("select * from CARD;")
   ArrayList<Card> selectAllCards();
+
+  @Update("UPDATE CARD SET STATE='visible' WHERE ID = #{id}")
+  void updateById(int id);
+
 }

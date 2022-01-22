@@ -13,4 +13,12 @@ public class Hand {
     this.hand = hand;
   }
 
+  public void remove(int id) {
+    for (int i = 0; i < this.hand.size(); i++) {
+      if (this.hand.get(i).isContain(id)) {
+        this.hand.remove(i);
+      }
+    }
+  }
+
 }

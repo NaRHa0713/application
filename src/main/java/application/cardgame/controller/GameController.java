@@ -9,23 +9,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Random;
+import org.springframework.transaction.annotation.Transactional;
 
 import application.cardgame.model.Room;
 import application.cardgame.service.AsyncCard;
 import application.cardgame.model.Card;
 import application.cardgame.model.CardMapper;
 import application.cardgame.model.Hand;
+import application.cardgame.model.Game;
 
 @Controller
 public class GameController {
 
   @Autowired
   private Room room;
+
+  @Autowired
+  private Game game;
 
   @Autowired
   CardMapper cardmapper;
@@ -68,5 +74,12 @@ public class GameController {
     final SseEmitter sseEmitter = new SseEmitter(-1L);
     this.ac57.count(sseEmitter);
     return sseEmitter;
+  }
+
+  @GetMapping("playCard")
+  public String play(@RequestParam Integer id) {
+    this.ac57.playCard(id);
+    return "7narabe2.html";
+
   }
 }
