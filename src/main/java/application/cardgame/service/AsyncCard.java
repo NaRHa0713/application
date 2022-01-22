@@ -27,6 +27,8 @@ public class AsyncCard {
 
   boolean dbUpdated = false;
 
+  String user_name;
+
   @Autowired
   private Room room;
 
@@ -47,7 +49,7 @@ public class AsyncCard {
       this.room.discard(id);
       cardmapper.updateById(id);
       count++;
-      if (count == 2) {
+      if (count == 4) {
         count = 0;
       }
     }
@@ -56,7 +58,7 @@ public class AsyncCard {
   }
 
   @Async
-  public void count(SseEmitter emitter) {
+  public void count(SseEmitter emitter, Principal prin) {
     dbUpdated = true;
     logger.info("count start");
     try {
@@ -74,6 +76,8 @@ public class AsyncCard {
         this.room.setNo((this.room.getNo() + 1) % 4); // Noのカウントアップ
         info.setCards(cards); // 送る情報に格納(カード情報)
         info.setRoom(room); // 送る情報に格納(ユーザ情報)
+        user_name = prin.getName();
+        info.setUserName(user_name);
         emitter.send(info);// ここでsendすると引数をブラウザにpushする
         TimeUnit.MILLISECONDS.sleep(1000);
         dbUpdated = false;

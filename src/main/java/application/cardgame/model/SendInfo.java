@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class SendInfo {
   ArrayList<Card> cards;
-  boolean move;
+  String user_name;
   Room room;
 
   // Thymeleafでフィールドを扱うためにはgetter/setterが必ず必要
@@ -25,12 +25,11 @@ public class SendInfo {
     this.cards = cards;
   }
 
-  public boolean getMove() {
-    return move;
+  public String getUserName() {
+    return user_name;
   }
 
-  public void setMove(Boolean move) {
-    this.move = move;
+  public void setUserName(String user_name) {
+    this.user_name = user_name;
   }
-
 }
