@@ -26,6 +26,7 @@ import application.cardgame.model.Game;
 
 @Controller
 public class GameController {
+  int flag = 0;
 
   @Autowired
   private Room room;
@@ -38,24 +39,27 @@ public class GameController {
 
   @GetMapping("/7narabe2")
   public String sample22() {
-    ArrayList<Card> all_card = cardmapper.selectAllCards();
-    ArrayList<Card> hand = new ArrayList<Card>();
-    ArrayList<Hand> allHand = new ArrayList<Hand>();
-    Hand hand_card = new Hand();
-    Random rnd = new Random();
-    int r;
-    for (int j = 0; j < 4; j++) {
-      for (int i = 0; i < 13; i++) {
-        r = rnd.nextInt(all_card.size());
-        hand.add(all_card.get(r));
-        all_card.remove(r);
+    if (flag == 0) {
+      ArrayList<Card> all_card = cardmapper.selectAllCards();
+      ArrayList<Card> hand = new ArrayList<Card>();
+      ArrayList<Hand> allHand = new ArrayList<Hand>();
+      Hand hand_card = new Hand();
+      Random rnd = new Random();
+      int r;
+      for (int j = 0; j < 4; j++) {
+        for (int i = 0; i < 13; i++) {
+          r = rnd.nextInt(all_card.size());
+          hand.add(all_card.get(r));
+          all_card.remove(r);
+        }
+        hand_card.setHand(hand);
+        allHand.add(hand_card);
+        hand = new ArrayList<Card>();
+        hand_card = new Hand();
       }
-      hand_card.setHand(hand);
-      allHand.add(hand_card);
-      hand = new ArrayList<Card>();
-      hand_card = new Hand();
+      this.room.setAllHand(allHand);
+      flag = 1;
     }
-    this.room.setAllHand(allHand);
     return "7narabe2.html";
   }
 

@@ -44,9 +44,8 @@ public class AsyncCard {
       this.game.changePlayCards(id);
       this.room.discard(id);
       cardmapper.updateById(id);
-      this.dbUpdated = true;
-      return;
     }
+    this.dbUpdated = true;
     return;
   }
 
@@ -71,6 +70,7 @@ public class AsyncCard {
         logger.info("send:" + cards);
         logger.info("send:" + info);
         emitter.send(info);// ここでsendすると引数をブラウザにpushする
+        TimeUnit.MILLISECONDS.sleep(1000);
         dbUpdated = false;
         /*
          * logger.info("send:" + cards.get(1).getImage()); logger.info("send:" +
