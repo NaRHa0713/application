@@ -2,6 +2,7 @@ package application.cardgame.service;
 
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
@@ -15,6 +16,7 @@ import application.cardgame.model.Card;
 import application.cardgame.model.CardMapper;
 
 import application.cardgame.model.Room;
+import application.cardgame.model.Game;
 
 import application.cardgame.model.SendInfo;
 
@@ -28,9 +30,25 @@ public class AsyncCard {
   private Room room;
 
   @Autowired
+  private Game game;
+
+  @Autowired
   private CardMapper cardmapper;
 
   private final Logger logger = LoggerFactory.getLogger(AsyncCard.class);
+
+  @Transactional
+  public void playCard(int id) {
+    // 削除対象のフルーツを取得
+    if (this.game.cardContain(id)) {
+      this.game.changePlayCards(id);
+      this.room.discard(id);
+      cardmapper.updateById(id);
+      this.dbUpdated = true;
+      return;
+    }
+    return;
+  }
 
   @Async
   public void count(SseEmitter emitter) {

@@ -30,6 +30,12 @@ public class Room {
     }
   }
 
+  public void discard(int id) {
+    for (int i = 0; i < this.allHand.size(); i++) {
+      this.allHand.get(i).remove(id);
+    }
+  }
+
   // 以降はフィールドのgetter/setter
   // これらがないとThymeleafで値を取得できない
   public int getRoomNo() {
