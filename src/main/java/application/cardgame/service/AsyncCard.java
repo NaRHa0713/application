@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 import application.cardgame.model.Card;
@@ -22,7 +23,7 @@ import application.cardgame.model.SendInfo;
 
 @Service
 public class AsyncCard {
-  // int count = 1;
+  int count = 0;
 
   boolean dbUpdated = false;
 
@@ -38,12 +39,14 @@ public class AsyncCard {
   private final Logger logger = LoggerFactory.getLogger(AsyncCard.class);
 
   @Transactional
-  public void playCard(int id) {
+  public void playCard(int id, Principal prin) {
+    String name = prin.getName();
     // 削除対象のフルーツを取得
-    if (this.game.cardContain(id)) {
+    if (this.game.cardContain(id) && checkMove(name)) {
       this.game.changePlayCards(id);
       this.room.discard(id);
       cardmapper.updateById(id);
+      count++;
     }
     this.dbUpdated = true;
     return;
@@ -65,10 +68,9 @@ public class AsyncCard {
         }
 
         SendInfo info = new SendInfo();
+        this.room.setNo((this.room.getNo() + 1) % 4); // Noのカウントアップ
         info.setCards(cards); // 送る情報に格納(カード情報)
         info.setRoom(room); // 送る情報に格納(ユーザ情報)
-        logger.info("send:" + cards);
-        logger.info("send:" + info);
         emitter.send(info);// ここでsendすると引数をブラウザにpushする
         TimeUnit.MILLISECONDS.sleep(1000);
         dbUpdated = false;
@@ -84,5 +86,13 @@ public class AsyncCard {
     } finally {
       emitter.complete();// emitterの後始末．明示的にブラウザとの接続を一度切る
     }
+  }
+
+  public boolean checkMove(String name) {
+    ArrayList<String> u = this.room.getUsers();
+    if (name.equals(u.get(count))) {
+      return true;
+    }
+    return false;
   }
 }
