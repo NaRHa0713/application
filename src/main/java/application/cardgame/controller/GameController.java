@@ -71,14 +71,14 @@ public class GameController {
   private AsyncCard ac57;
 
   @GetMapping("step6")
-  public SseEmitter pushCount() {
+  public SseEmitter pushCount(Principal prin) {
     // infoレベルでログを出力する
     logger.info("pushCount");
 
     // push処理の秘密兵器．これを利用してブラウザにpushする
     // finalは初期化したあとに再代入が行われない変数につける（意図しない再代入を防ぐ）
     final SseEmitter sseEmitter = new SseEmitter(-1L);
-    this.ac57.count(sseEmitter);
+    this.ac57.count(sseEmitter, prin);
     return sseEmitter;
   }
 

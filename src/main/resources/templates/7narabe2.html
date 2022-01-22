@@ -41,10 +41,12 @@
 
         var hand_table = "";
         for (var i = 0; i < info.room.allHand.length; i++) {
-          for (var j = 0; j < info.room.allHand[i].hand.length; j++) {
-            hand_table = hand_table + "<a href='/playCard?id=" + info.room.allHand[i].hand[j].id + "'>" + "<img src='/images/" + info.room.allHand[i].hand[j].image + "' width='50' height='72'></a>";
+          if (info.userName == info.room.users[i]) {
+            for (var j = 0; j < info.room.allHand[i].hand.length; j++) {
+              hand_table = hand_table + "<a href='/playCard?id=" + info.room.allHand[i].hand[j].id + "'>" + "<img src='/images/" + info.room.allHand[i].hand[j].image + "' width='50' height='72'></a>";
+            }
+            hand_table = hand_table + "<br>";
           }
-          hand_table = hand_table + "<br>";
         }
 
         var tbody3 = document.getElementById("p3");
