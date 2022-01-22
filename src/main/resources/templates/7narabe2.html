@@ -40,7 +40,6 @@
         }
 
         var hand_table = "";
-
         for (var i = 0; i < info.room.allHand.length; i++) {
           for (var j = 0; j < info.room.allHand[i].hand.length; j++) {
             hand_table = hand_table + "<a href='/playCard?id=" + info.room.allHand[i].hand[j].id + "'>" + "<img src='/images/" + info.room.allHand[i].hand[j].image + "' width='50' height='72'></a>";

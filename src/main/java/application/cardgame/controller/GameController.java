@@ -38,7 +38,7 @@ public class GameController {
   CardMapper cardmapper;
 
   @GetMapping("/7narabe2")
-  public String sample22() {
+  public String sample22(Principal prin) {
     if (flag == 0) {
       ArrayList<Card> all_card = cardmapper.selectAllCards();
       ArrayList<Card> hand = new ArrayList<Card>();
@@ -81,8 +81,8 @@ public class GameController {
   }
 
   @GetMapping("playCard")
-  public String play(@RequestParam Integer id) {
-    this.ac57.playCard(id);
+  public String play(@RequestParam Integer id, Principal prin) {
+    this.ac57.playCard(id, prin);
     return "7narabe2.html";
 
   }
