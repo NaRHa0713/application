@@ -6,6 +6,7 @@ public class SendInfo {
   ArrayList<Card> cards;
   String user_name;
   Room room;
+  int count;
 
   // Thymeleafでフィールドを扱うためにはgetter/setterが必ず必要
   // vscodeのソースコード右クリック->ソースアクションでsetter/getterを簡単に追加できる
@@ -31,5 +32,13 @@ public class SendInfo {
 
   public void setUserName(String user_name) {
     this.user_name = user_name;
+  }
+
+  public int getCounter() {
+    return count;
+  }
+
+  public void setCounter(int count) {
+    this.count = count;
   }
 }

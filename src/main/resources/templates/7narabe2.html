@@ -28,16 +28,15 @@
 
         // カードを表示するHTML文章の作成
         var cards_table = "";
-        var left = 0;
-        var top = 0;
 
         for (var i = 0; i < 4; i++) {
-          top = 100 * (i + 1);
           for (var j = 0; j < 13; j++) {
-            left = 100 + 70 * j;
-            cards_table = cards_table + "<img src='/images/" + info.cards[13 * i + j].image + "' width='70' height='100' style='position: absolute; left:" + left + "px; top:" + top + "px; visibility:" + info.cards[13 * i + j].state + ";'>";
+            cards_table = cards_table + "<img src='/images/" + info.cards[13 * i + j].image + "' width='5.5%' style='visibility:" + info.cards[13 * i + j].state + ";'>";
           }
+          cards_table = cards_table + "<br>";
         }
+
+        // height='108'
 
         var hand_table = "";
         for (var i = 0; i < info.room.allHand.length; i++) {
@@ -49,23 +48,45 @@
           }
         }
 
+        var now_user = info.room.users[info.counter] + "さんの番です。";
+
+        var rank = "";
+        var flag = 0;
+
+        for (var i = 0; i < info.room.rank.length; i++) {
+          if (info.room.rank[i] == 0) {
+            flag = 1;
+          }
+          rank = rank + info.room.users[i] + "さんの順位は" + info.room.rank[i] + "位です。<br>";
+        }
+
+        if (flag == 0) {
+          var tbody6 = document.getElementById("p6");
+          tbody6.innerHTML = now_user;
+        }
+
         var tbody3 = document.getElementById("p3");
         tbody3.innerHTML = cards_table;
         var tbody4 = document.getElementById("p4");
         tbody4.innerHTML = hand_table;
+        var tbody5 = document.getElementById("p5");
+        tbody5.innerHTML = now_user;
       }
     }
   </script>
 </head>
 
 <body>
+  <a href="/back">部屋から退出する</a>
   <div id=p3>
-
   </div>
-  <a href="/pass">パス</a>
+  <div id=p5>
+  </div>
   <div id=p4>
   </div>
-  <a href="/back">部屋から退出する</a>
+  <a href="/pass">パス</a>
+  <div id=p6>
+  </div>
 </body>
 
 </html>
