@@ -69,22 +69,26 @@
         tbody3.innerHTML = cards_table;
         var tbody4 = document.getElementById("p4");
         tbody4.innerHTML = hand_table;
-        var tbody5 = document.getElementById("p5");
-        tbody5.innerHTML = now_user;
+
+        if (flag == 1) {
+          var tbody5 = document.getElementById("p5");
+          tbody5.innerHTML = now_user;
+        }
+
       }
     }
   </script>
 </head>
 
-<body>
-  <a href="/back">部屋から退出する</a>
+<body background="/images/背景.jpg">
+  <a href="/back" style="color:deepskyblue">部屋から退出する</a>
   <div id=p3>
   </div>
   <div id=p5>
   </div>
   <div id=p4>
   </div>
-  <a href="/pass">パス</a>
+  <a href="/pass" style="color:deepskyblue">パス</a>
   <div id=p6>
   </div>
 </body>

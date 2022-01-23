@@ -4,15 +4,64 @@
 <head>
   <meta charset="utf-8">
   <title>welcome</title>
+  <style type="text/css">
+    .center {
+      position: absolute;
+      left: 0;
+      top: 30%;
+      width: 100%;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .center2 {
+      position: absolute;
+      left: 0;
+      top: 70%;
+      width: 100%;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .center3 {
+      position: absolute;
+      left: 0;
+      top: 15%;
+      width: 100%;
+      font-size: 50px;
+      text-align: center;
+    }
+
+    .center4 {
+      position: absolute;
+      left: 0;
+      text-align: center;
+      justify-content: center;
+    }
+  </style>
 </head>
 
-<body>
-  <h1>ようこそ!!!!!!!!</h1>
-  <a href="/7narabe">7ならべに入室</a>
-  <a href="/logout">ログアウト</a>
-  <div>
-    7を中心に同じスートで隣り合った数字のカードを順番に並べていくゲームです<br>
-    カードを1枚づつ出していき早く手札を無くしたひとが勝ちです
+<body background="/images/背景.jpg">
+
+  <p class="center4">
+    <img src="/images/テロップボード.png" style="width:70%; height:85%">
+  </p>
+
+  <h1 class=center3>◇ルール◇</h1>
+  <div class="center">
+    <p>
+      7を中心にカードをマーク毎に並べる<br>
+      手札を全て出せば勝利<br>
+      出せるカードは1ターンに1枚<br>
+      ※パスは無限に使えます
+      <br>
+      <br>
+      ※入室した順番がプレイ順となります
+    </p>
+  </div>
+  <div class="center2">
+    <a href="/7narabe" style="color:deepskyblue">7ならべに入室</a>
+    <a href="/logout" style="color:deepskyblue">ログアウト</a>
   </div>
 </body>
 

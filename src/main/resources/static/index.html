@@ -4,16 +4,39 @@
 <head>
   <meta charset="utf-8">
   <title>welcome</title>
+  <style type="text/css">
+    body {
+      background-image: url("/images/ログイン背景.jpg");
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center center;
+    }
+
+    .center {
+      position: absolute;
+      left: 0;
+      top: 30%;
+      width: 100%;
+      font-size: 80px;
+      text-align: center;
+    }
+
+    .center2 {
+      position: absolute;
+      left: 0;
+      top: 60%;
+      width: 100%;
+      font-size: 50px;
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>トランプゲーム</h1>
-  <a href="/welcome" style="position: absolute; left:220px; top:250px;">ログイン</a>
-
-  <img src="/images/1.png" width="70" height="100" style="position: absolute; left:100px; top:100px;">
-  <img src="/images/14.png" width="70" height="100" style="position: absolute; left:170px; top:100px;">
-  <img src="/images/27.png" width="70" height="100" style="position: absolute; left:240px; top:100px;">
-  <img src="/images/40.png" width="70" height="100" style="position: absolute; left:310px; top:100px;">
+  <h1 class="center">トランプゲーム</h1>
+  <div class="center2">
+    <a href="/welcome" style="color:red">ログイン</a>
+  </div>
 </body>
 
 </html>
