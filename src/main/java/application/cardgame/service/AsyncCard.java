@@ -21,9 +21,13 @@ import application.cardgame.model.Game;
 
 import application.cardgame.model.SendInfo;
 
+import application.cardgame.model.Hand;
+
 @Service
 public class AsyncCard {
   int count = 0;
+
+  int rank = 1;
 
   boolean dbUpdated = false;
 
@@ -48,8 +52,15 @@ public class AsyncCard {
       this.game.changePlayCards(id);
       this.room.discard(id);
       cardmapper.updateById(id);
+
+      if (checkWin(this.room.getAllHand().get(count))) {
+        ArrayList<Integer> ranking = this.room.getRank();
+        ranking.set(count, rank);
+        this.room.setRank(ranking);
+      }
+
       count++;
-      if (count == 2) {
+      if (count == 4) {
         count = 0;
       }
     }
@@ -90,6 +101,7 @@ public class AsyncCard {
         info.setRoom(room); // 送る情報に格納(ユーザ情報)
         user_name = prin.getName();
         info.setUserName(user_name);
+        info.setCounter(count);
         emitter.send(info);// ここでsendすると引数をブラウザにpushする
         TimeUnit.MILLISECONDS.sleep(1000);
         dbUpdated = false;
@@ -110,6 +122,13 @@ public class AsyncCard {
   public boolean checkMove(String name) {
     ArrayList<String> u = this.room.getUsers();
     if (name.equals(u.get(count))) {
+      return true;
+    }
+    return false;
+  }
+
+  public boolean checkWin(Hand hand) {
+    if (hand.getHand().size() == 0) {
       return true;
     }
     return false;

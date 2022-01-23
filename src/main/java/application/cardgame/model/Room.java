@@ -1,6 +1,7 @@
 package application.cardgame.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,7 @@ public class Room {
   int No = 1;
 
   ArrayList<Hand> allHand = new ArrayList<Hand>();
+  ArrayList<Integer> rank = new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0));
 
   public void addUser(String name) {
     // 同名のユーザが居たら何もせずにreturn
@@ -60,6 +62,14 @@ public class Room {
 
   public void setAllHand(ArrayList<Hand> allHand) {
     this.allHand = allHand;
+  }
+
+  public ArrayList<Integer> getRank() {
+    return rank;
+  }
+
+  public void setRank(ArrayList<Integer> rank) {
+    this.rank = rank;
   }
 
 }
