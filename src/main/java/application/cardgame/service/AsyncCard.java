@@ -47,6 +47,7 @@ public class AsyncCard {
   @Transactional
   public void playCard(int id, Principal prin) {
     String name = prin.getName();
+    ArrayList<Integer> ranking = new ArrayList<Integer>();
     // 削除対象のフルーツを取得
     if (this.game.cardContain(id) && checkMove(name)) {
       this.game.changePlayCards(id);
@@ -54,14 +55,24 @@ public class AsyncCard {
       cardmapper.updateById(id);
 
       if (checkWin(this.room.getAllHand().get(count))) {
-        ArrayList<Integer> ranking = this.room.getRank();
+        ranking = this.room.getRank();
         ranking.set(count, rank);
         this.room.setRank(ranking);
+        rank++;
       }
 
       count++;
       if (count == 4) {
         count = 0;
+      }
+      while (checkWin(this.room.getAllHand().get(count))) {
+        if (checkEnd(ranking)) {
+          break;
+        }
+        count++;
+        if (count == 4) {
+          count = 0;
+        }
       }
     }
     this.dbUpdated = true;
@@ -129,6 +140,19 @@ public class AsyncCard {
 
   public boolean checkWin(Hand hand) {
     if (hand.getHand().size() == 0) {
+      return true;
+    }
+    return false;
+  }
+
+  public boolean checkEnd(ArrayList<Integer> rank) {
+    int flag = 0;
+    for (int i = 0; i < rank.size(); i++) {
+      if (rank.get(i) == 0) {
+        flag = 1;
+      }
+    }
+    if (flag == 0) {
       return true;
     }
     return false;
