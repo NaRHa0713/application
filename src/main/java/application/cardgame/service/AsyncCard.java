@@ -72,7 +72,7 @@ public class AsyncCard {
     String name = prin.getName();
     if (checkMove(name)) {
       count++;
-      if (count == 2) {
+      if (count == 4) {
         count = 0;
       }
     }
