@@ -49,7 +49,19 @@ public class AsyncCard {
       this.room.discard(id);
       cardmapper.updateById(id);
       count++;
-      if (count == 4) {
+      if (count == 2) {
+        count = 0;
+      }
+    }
+    this.dbUpdated = true;
+    return;
+  }
+
+  public void doPass(Principal prin) {
+    String name = prin.getName();
+    if (checkMove(name)) {
+      count++;
+      if (count == 2) {
         count = 0;
       }
     }

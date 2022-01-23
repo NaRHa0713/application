@@ -86,6 +86,11 @@ public class GameController {
   public String play(@RequestParam Integer id, Principal prin) {
     this.ac57.playCard(id, prin);
     return "7narabe2.html";
+  }
 
+  @GetMapping("pass")
+  public String pass(Principal prin) {
+    this.ac57.doPass(prin);
+    return "7narabe2.html";
   }
 }
