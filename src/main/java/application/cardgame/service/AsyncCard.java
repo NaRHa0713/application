@@ -66,6 +66,7 @@ public class AsyncCard {
       if (count == 4) {
         count = 0;
       }
+      ranking = this.room.getRank();
       while (ranking.get(count) > 0) {
         // ranking = this.room.getRank();
         if (checkEnd(ranking)) {
@@ -88,6 +89,7 @@ public class AsyncCard {
       if (count == 4) {
         count = 0;
       }
+      ranking = this.room.getRank();
       while (ranking.get(count) > 0) {
         // ranking = this.room.getRank();
         if (checkEnd(ranking)) {
