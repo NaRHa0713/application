@@ -12,13 +12,11 @@
         var info = JSON.parse(event.data);//JSONオブジェクトとしてparse
         // 参加者リストを表示するHTML文章の作成
         var users_table = "";
-        var s = "<ul>";
-        var e = "</ul>";
-        users_table = users_table + s;
+
         for (var i = 0; i < info.length; i++) {
-          users_table = users_table + "<li>" + info[i];
+          users_table = users_table + "<p>" + info[i] + "</p>";
         }
-        users_table = users_table + e;
+
         // 人数カウントして開始ボタンを表示するHTML文章の作成
         var start = "しばらくお待ちください。";
         if (info.length == 4) {
@@ -66,17 +64,36 @@
       }
     }
   </script>
+  <style type="text/css">
+    .center {
+      position: absolute;
+      left: 0;
+      top: 10%;
+      width: 100%;
+      font-size: 50px;
+      text-align: center;
+    }
+
+    .center2 {
+      position: absolute;
+      left: 0;
+      top: 30%;
+      width: 100%;
+      font-size: 30px;
+      text-align: center;
+    }
+  </style>
 </head>
 
-<body>
-  <h1>7ならべの部屋</h1>
+<body background="/images/背景.jpg">
+  <h1 class="center">7ならべの部屋</h1>
 
-  <div th:if="${room}">
+  <div th:if="${room}" class="center2">
     参加者
     <p id="p1"></p>
     <p id="p2"></p>
+    <a href="/back" style="color:deepskyblue">部屋から退出する</a>
   </div>
-  <a href="/back">部屋から退出する</a>
 </body>
 
 </html>
